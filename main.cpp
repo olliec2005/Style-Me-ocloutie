@@ -1,48 +1,45 @@
 //Ollie Cloutier
 
 #include <iostream>
+#include "Temperature.h"
+
 using namespace std;
 
-class temp {
-    double f;
-public:
-    temp() : f(32) {}
-    double getf() {return f;}
-    void setf(double p)
-    { f = p;}
-    double getc() const {
-        return (f-32)*(5/9);        // NEED TO FIX
+int get_input(string message)
+{
+    int user_response = 0;
+    cout << message;
+
+    while (!(cin >> user_response))
+    {
+        cout << "Invalid input, please try again: " << endl;
+        cin.clear();
+
+        string input;
+        getline(cin, input);
     }
-    void setc(int c) { f=(c*(9/5)+32);} //BUGGY
-};
+
+    return user_response;
+}
 
 int main() {
-    int choice = 0;
-    while (!(cin >> choice))
-    {
-        cin.clear();
-        string junk;
-        getline(cin, junk);
-    }
-    int t = 0;
-    while (!(cin >> t)) {
-        cin.clear();
-        string junk;
-        getline(cin, junk);
-    }
-    temp mytemp;
-    (choice == 1) ? mytemp.setf(t) : mytemp.setc(t);
-//    if (choice == 1)
-//        mytemp.setf(t);
-//    else
-//        mytemp.setc(t);
+    int temperature = get_input("What is the temperature? ");
+    int temperature_unit = get_input("What is the temperature unit? Fahrenheit(1), Celsius(any other number): ");
+
+    Temperature mytemp;
+    (temperature_unit == 1) ? mytemp.set_fahrenheit(temperature) : mytemp.set_celsius(temperature);
+
     string a;
-    if (mytemp.getc() < 0)
-        a="cold";
-    else if (mytemp.getc() > 30)
-        a="hot";
+
+    if (mytemp.get_celsius() < 0)
+        a = "cold";
+
+    else if (mytemp.get_celsius() > 30)
+        a = "hot";
+
     else
-        a="beautiful";
+        a = "beautiful";
+
     cout << "Hello, " << a << " World!" << endl;
     return 0;
 }
