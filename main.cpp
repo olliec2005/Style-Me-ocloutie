@@ -23,7 +23,8 @@ int get_input(string message)
     return user_response;
 }
 
-int main() {
+int main()
+{
     int temperature = get_input("What is the temperature? ");
     int temperature_unit = get_input("What is the temperature unit? Fahrenheit(1), Celsius(any other number): ");
 
