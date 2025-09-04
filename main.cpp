@@ -5,6 +5,7 @@
 
 using namespace std;
 
+//takes user input and returns it as an integer
 int get_input(string message)
 {
     int user_response = 0;
@@ -26,20 +27,22 @@ int main() {
     int temperature = get_input("What is the temperature? ");
     int temperature_unit = get_input("What is the temperature unit? Fahrenheit(1), Celsius(any other number): ");
 
-    Temperature mytemp;
-    (temperature_unit == 1) ? mytemp.set_fahrenheit(temperature) : mytemp.set_celsius(temperature);
+    Temperature my_tempurature;
+    // if the user chooses Fahrenheit then use set_fahrenheit method otherwise use set_celsius
+    (temperature_unit == 1) ? my_tempurature.set_fahrenheit(temperature) : my_tempurature.set_celsius(temperature);
 
-    string a;
+    string adjective;
 
-    if (mytemp.get_celsius() < 0)
-        a = "cold";
+    // match an adjective to the temperature
+    if (my_tempurature.get_celsius() < 0)
+        adjective = "cold";
 
-    else if (mytemp.get_celsius() > 30)
-        a = "hot";
+    else if (my_tempurature.get_celsius() > 30)
+        adjective = "hot";
 
     else
-        a = "beautiful";
+        adjective = "beautiful";
 
-    cout << "Hello, " << a << " World!" << endl;
+    cout << "Hello, " << adjective << " World!" << endl;
     return 0;
 }
